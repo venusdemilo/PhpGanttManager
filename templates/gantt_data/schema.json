@@ -1,0 +1,61 @@
+{
+  "schema": {
+    "source": {
+      "type" : "array",
+      "items" : {
+        "type": "object",
+        "title": "JsonData",
+        "properties": {
+          "name": {
+            "type" : "string",
+            "title": "Bold value in the left-most column",
+            "required": true
+          },
+          "desc": {
+            "type": "string",
+            "title": "Secondary value in the gantt row",
+            "required": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "title": "Valeurs",
+              "properties": {
+                "to":{
+                  "type": "string",
+                "title": "Date fin (ms) :"},
+                "from":{
+                  "type": "string",
+                "title": "Date début (ms)"},
+                "desc":{
+                  "type": "string",
+                "title": "Text that appears on hover"},
+                "label":{
+                  "type": "string",
+                "title": "Appears on the gantt item"},
+                "customClass":{
+                  "type": "string",
+                "title": "Custom class gantt item"},
+                "dataObj":{
+                  "type": "object",
+                  "title" : "Données complémentaires",
+                  "properties":{
+                    "completed":{
+                      "type": "boolean",
+                      "title": "Achevé ?"
+                    },
+                    "id":{
+                      "type": "integer",
+                      "title": "Identificateur"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

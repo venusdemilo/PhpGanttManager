@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New GanttData{% endblock %}
+
+{% block body %}
+    <h1>Create new GanttData</h1>
+
+    {{ include('gantt_data/_form.html.twig') }}
+
+    <a href="{{ path('gantt_data_index') }}">back to list</a>
+{% endblock %}

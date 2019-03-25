@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit GanttData{% endblock %}
+
+{% block body %}
+    <h1>Edit GanttData</h1>
+
+    {{ include('gantt_data/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('gantt_data_index') }}">back to list</a>
+
+    {{ include('gantt_data/_delete_form.html.twig') }}
+{% endblock %}

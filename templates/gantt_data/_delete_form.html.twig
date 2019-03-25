@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('gantt_data_delete', {'id': gantt_datum.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gantt_datum.id) }}">
+    <button class="btn">Delete</button>
+</form>

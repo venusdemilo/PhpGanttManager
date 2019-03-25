@@ -1,0 +1,44 @@
+body {
+    background-color: light-grey;
+}
+.fn-gantt .ganttRDV {
+    background-color: #81d4fa;
+}
+.fn-gantt .ganttRDV .fn-label {
+    color: black !important;
+}
+
+.fn-gantt .ganttSec {
+    background-color: #b3e5fc;
+}
+.fn-gantt .ganttSec .fn-label {
+    color: black !important;
+}
+
+.fn-gantt .ganttPrat{
+    background-color: #f48fb1 ;
+}
+.fn-gantt .ganttPrat .fn-label {
+    color: black !important;
+}
+
+.fn-gantt .ganttOrdo {
+    background-color: #f8bbd0  ;
+}
+.fn-gantt .ganttOrdo .fn-label {
+    color: black  !important;
+}
+
+.fn-gantt .ganttInf {
+    background-color: #e6ee9c ;
+}
+.fn-gantt .ganttInf .fn-label {
+    color: black  !important;
+}
+
+.fn-gantt .ganttAlert {
+    background-color: #eeff41 ;
+}
+.fn-gantt .ganttAlert .fn-label {
+    color: black  !important;
+}

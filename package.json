@@ -1,0 +1,23 @@
+{
+    "devDependencies": {
+        "@symfony/webpack-encore": "^0.22.0",
+        "jqueryui": "^1.11.1",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "jQuery.Gantt": "https://github.com/taitems/jQuery.Gantt.git",
+        "jQueryGantt": "https://github.com/robicch/jQueryGantt.git",
+        "jquery": "^3.3.1",
+        "jsgantt-improved": "https://github.com/jsGanttImproved/jsgantt-improved.git",
+        "jsonform": "https://github.com/jsonform/jsonform.git",
+        "jsonq": "https://github.com/s-yadav/jsonQ.git"
+    }
+}

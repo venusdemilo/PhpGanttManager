@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('app') }}
+
+{% endblock %}
+{% block title %}Hello GanttTestController!{% endblock %}
+{% block body %}
+
+<a class="waves-effect waves-light btn" id="chargergantt">charger gantt</a>
+<a class="waves-effect waves-light btn" id="chargerjson">charger json</a>
+<div id="datepickercontainer"></div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4 id="formtitle"></h4>
+    <div class="row">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Titre principal" id="name" type="text" class="validate">
+        <label for="name">Nom</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Titre secondaire" id="desc" type="text" class="validate">
+        <label for="desc">Description</label>
+        <input type="hidden" id="idNumber">
+        <input type="hidden" id="flag">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+      <input type="text" id="from" class="datepicker">
+      <label for="from">Début</label>
+      </div>
+      <div class="input-field col s6">
+        <input type="text" id="to" class="datepicker">
+        <label for="to">Fin</label>
+      </div>
+    </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Texte du hover" id="desc2" type="text" class="validate">
+          <label for="desc">Hover</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Titre de l'item" id="label" type="text" class="validate">
+          <label for="label">Item</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Classe personnalisée de l'item" id="customClass" type="text" class="validate">
+          <label for="customClass">Nom de classe</label>
+        </div>
+      </div>
+      <p>
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="Droits accès" id="access" type="text" class="validate">
+            <label for="customClass">Accès</label>
+          </div>
+        </div>
+        <p>
+        <label>
+          <input name="completed" type="radio" value="true" id="radiotrue" >
+          <span>Tâche achevée</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="completed" type="radio" value="false" id="radiofalse" >
+          <span>Tâche non achevée</span>
+        </label>
+      </p>
+
+
+    </div>
+    <div class="btn" id="submitData" type="submit"></div>
+  </form>
+</div>
+</div>
+
+<h1> Diagramme de Gantt</h1>
+
+
+<div class="gantt"></div>
+{% endblock %}
+{% block javascripts %}
+
+{{ parent() }}
+<script>
+// déclaration des variables JS dans le template
+
+   var jsonrecept = "{{ path('json_id', {'id': 8})|escape('js') }}";
+   var jsonsend = "{{ path('json_id_update', {'id': 8})|escape('js') }}";
+
+</script>
+{{ encore_entry_script_tags('app') }}
+
+{{ encore_entry_script_tags('gantt') }}
+
+{% endblock %}

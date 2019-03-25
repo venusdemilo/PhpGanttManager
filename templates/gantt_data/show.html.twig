@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GanttData{% endblock %}
+
+{% block body %}
+    <h1>GanttData</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gantt_datum.id }}</td>
+            </tr>
+            <tr>
+                <th>GanttArr</th>
+                <td>{{ gantt_datum.ganttArr ? gantt_datum.ganttArr|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>GanttJson</th>
+                <td>{{ gantt_datum.ganttJson ? gantt_datum.ganttJson|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>GanttObj</th>
+                <td>{{ gantt_datum.ganttObj }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('gantt_data_index') }}">back to list</a>
+
+    <a href="{{ path('gantt_data_edit', {'id': gantt_datum.id}) }}">edit</a>
+
+    {{ include('gantt_data/_delete_form.html.twig') }}
+{% endblock %}
