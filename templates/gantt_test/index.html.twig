@@ -3,11 +3,9 @@
 
 {% block stylesheets %}
 {{ parent() }}
-{{ encore_entry_link_tags('app') }}
-
 {% endblock %}
 {% block title %}Hello GanttTestController!{% endblock %}
-{% block body %}
+{% block body %}{{ parent() }}
 
 <a class="waves-effect waves-light btn" id="chargergantt">charger gantt</a>
 <a class="waves-effect waves-light btn" id="chargerjson">charger json</a>
@@ -88,6 +86,16 @@
 </div>
 </div>
 
+<div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>Action refusée</h4>
+      <p>Vos droits ne permettent pas de modifier cet item.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+</div>
+
 <h1> Diagramme de Gantt</h1>
 
 
@@ -101,7 +109,7 @@
 
    var jsonrecept = "{{ path('json_id', {'id': 8})|escape('js') }}";
    var jsonsend = "{{ path('json_id_update', {'id': 8})|escape('js') }}";
-
+   var role = "{{app.user.roles|json_encode()}}";
 </script>
 {{ encore_entry_script_tags('app') }}
 

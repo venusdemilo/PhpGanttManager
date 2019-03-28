@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
+  // initialisation des fenêtres modales
   $('#modal1').modal();
+  $('#modal2').modal();
   $('#from').datepicker({
     autoClose:true,
     container:$('#datepickercontainer'),
@@ -19,8 +21,10 @@ var nameMonth = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","No
 $('#chargerjson').click(function(){
 modifierGantt();
 });
-
+//////////////////////////////////////////
 //initialisation variable stockage données
+/////////////////////////////////////////
+
 var tanker = $('body');
 //affectation données dans variable 'data_1' sur 'body'
 // sous forme d'objet JS
@@ -28,7 +32,28 @@ var tanker = $('body');
 $.getJSON(jsonrecept, function(json){
   $.data(tanker,'data_1',{obj_1:json});
 });
+//////////////////////////////////////
+//initialisation du tableau des Roles
+// role est défini dans le template
+/////////////////////////////////////
 
+// nettoyage de la chaîne
+role = role.replace(/&quot;|\[|\]/g,"");
+// transformation en tableau JS
+console.log(role);
+role = role.split(",");
+function searchRole(what,where)
+{
+  var i = -1;
+  for (item in where)
+  {
+    i++;
+    if(where[i] == what)
+    {
+      return true;
+    }
+  }
+}
 
 // appel chargement gantt
 $('#chargergantt').click(function(){
@@ -39,7 +64,7 @@ $('#chargergantt').click(function(){
     json[i].values[0].from = dateFrom;
     json[i].values[0].to = dateTo;
   }
-  
+
   chargerGantt(json);
 });
 // func modify gantt
@@ -105,7 +130,7 @@ $('#submitData').click(function(e){
   // jsonsend est défini dans le template
   $.post(jsonsend, {objet:dataToSend});
 
-  console.log(dataToSend);
+  //console.log(dataToSend);
   chargerGantt(json);
 });
 // func chargement du gantt
@@ -123,41 +148,49 @@ function chargerGantt(source){
   itemsPerPage: 50,
   waitText: "Mise à jour ...",
   onItemClick: function(data) {
-
-    $('#formtitle').text('Modifier tâche');
-    $('#submitData').text('Modifier');
     var json = $.data(tanker,'data_1').obj_1;
-    console.log(data.id);
     var id = json[data.id];
-
-    var dateTo = new Date(parseInt(id.values[0].to));
-    var dateFrom = new Date(parseInt(id.values[0].from));
-
-    dateTo =  nameMonth[dateTo.getMonth()]+ ' ' + dateTo.getDate()  + ', ' + dateTo.getFullYear();
-    dateFrom = nameMonth[dateFrom.getMonth()]+ ' ' + dateFrom.getDate()  + ', ' + dateFrom.getFullYear();
-    $('#name:input').val(id.name);
-    $('#desc:input').val(id.desc);
-    $('#to:input').val(dateTo);
-    $('#from:input').val(dateFrom);
-    $('#idNumber').val(id.values[0].dataObj.id);
-    $('#flag:input').val('modify');
-    $('#desc2:input').val(id.values[0].desc);
-    $('#label:input').val(id.values[0].label);
-    $('#customClass:input').val(id.values[0].customClass);
-    $('#access:input').val(id.values[0].dataObj.access);
-    //$('#completed:checkbox').val(id.values[0].dataObj.completed);
-    //confirm('Tâche achevée :' + id.values[0].dataObj.completed);
-    if (id.values[0].dataObj.completed == 'true')
+    if(searchRole(id.values[0].dataObj.access,role)|| searchRole('ROLE_ADMIN',role))
     {
-      $('#radiotrue:input').prop("checked",true);
-      $('#radiofalse:input').prop("checked",false);
+
+      $('#formtitle').text('Modifier tâche');
+      $('#submitData').text('Modifier');
+
+      //console.log(data.id);
+
+
+      var dateTo = new Date(parseInt(id.values[0].to));
+      var dateFrom = new Date(parseInt(id.values[0].from));
+
+      dateTo =  nameMonth[dateTo.getMonth()]+ ' ' + dateTo.getDate()  + ', ' + dateTo.getFullYear();
+      dateFrom = nameMonth[dateFrom.getMonth()]+ ' ' + dateFrom.getDate()  + ', ' + dateFrom.getFullYear();
+      $('#name:input').val(id.name);
+      $('#desc:input').val(id.desc);
+      $('#to:input').val(dateTo);
+      $('#from:input').val(dateFrom);
+      $('#idNumber').val(id.values[0].dataObj.id);
+      $('#flag:input').val('modify');
+      $('#desc2:input').val(id.values[0].desc);
+      $('#label:input').val(id.values[0].label);
+      $('#customClass:input').val(id.values[0].customClass);
+      $('#access:input').val(id.values[0].dataObj.access);
+
+      if (id.values[0].dataObj.completed == 'true')
+      {
+        $('#radiotrue:input').prop("checked",true);
+        $('#radiofalse:input').prop("checked",false);
+      }
+      else
+      {
+        $('#radiofalse:input').prop("checked",true);
+      }
+
+      $('#modal1').modal('open');
     }
     else
     {
-      $('#radiofalse:input').prop("checked",true);
+      $('#modal2').modal('open');
     }
-
-    $('#modal1').modal('open');
   // end onItemClick
 	},
 	onAddClick: function(dt, rowId) {

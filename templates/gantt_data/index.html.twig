@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}GanttData index{% endblock %}
-
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
 {% block body %}
+{{parent()}}
     <h1>GanttData index</h1>
 
     <table class="table">
